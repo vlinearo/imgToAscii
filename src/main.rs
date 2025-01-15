@@ -49,7 +49,7 @@ impl Image {
 }
 
 fn main() {
-    let path = Path::new("./anime_2.jpg");
+    let path = Path::new("./Some.png");
     let width = 100;
 
     let image = Image::open(&path);
