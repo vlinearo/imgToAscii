@@ -4,10 +4,18 @@
 ,   unused_imports
 )]
 
+use imaget::*;
+
 use std::path::Path;
 
-use image::{ DynamicImage, GenericImageView, ImageBuffer, Luma
+use image::{
+    DynamicImage,
+    GenericImageView,
+    ImageBuffer,
+    Luma
 };
+
+use tokio::*;
 
 
 const GRADIENT: &[u8] = b" .:!/r(l1Z4H9W8$@";
@@ -48,9 +56,10 @@ impl Image {
     }
 }
 
-fn main() {
-    let path = Path::new("./Some.png");
-    let width = 100;
+#[tokio::main]
+async  fn main() {
+    let path = Path::new("./anime.jpg");
+    let width = 150;
 
     let image = Image::open(&path);
     let resized_image = Image::resize_img(image, width);

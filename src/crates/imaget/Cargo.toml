@@ -1,0 +1,9 @@
+[package]
+name = "imaget"
+version = { workspace = true }
+edition = { workspace = true }
+
+[dependencies]
+image = { workspace = true }
+tokio = { workspace = true }
+color-eyre = { workspace = true }

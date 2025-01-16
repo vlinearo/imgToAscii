@@ -1,8 +1,29 @@
+[workspace]
+members = [
+  "src/crates/imaget",
+  ]
+
+resolver = "2"
+
 [package]
 name = "imgToAscii"
 version = "0.1.0"
 edition = "2024"
 
-[dependencies]
+[workspace.package]
+name = "imgToAscii"
+version = "0.1.0"
+edition = "2024"
+
+[workspace.dependencies]
 image = "0.25.5"
-crossterm = "0.28.1"
+tokio = { version = "1.38.0", features = ["full"] }
+color-eyre = "0.6.3"
+
+[dependencies]
+
+imaget = { path = "src/crates/imaget" }
+
+color-eyre = { workspace = true }
+image = { workspace = true }
+tokio = { workspace = true }
