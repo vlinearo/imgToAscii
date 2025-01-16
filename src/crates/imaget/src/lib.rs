@@ -21,13 +21,15 @@ use color_eyre::{
     eyre::{self, Ok}
 };
 
+const GRADIENT: &[u8] = b" .:!/r(l1Z4H9W8$@";
+
 #[derive(Debug)]
-pub struct Image {
+pub struct Imaget {
     img: Option<DynamicImage>
 }
 
-impl Image {
-    async fn open(path_i: impl Into<PathBuf>) -> Result<Self> {
+impl Imaget {
+    pub async fn open(path_i: impl Into<PathBuf>) -> Result<Self> {
         let path = path_i.into();
         let img = task::spawn_blocking(
             move || image::open(path).map_err(|err| eyre::eyre!("Error: {}", err)))
@@ -36,7 +38,7 @@ impl Image {
         Ok(Self { img: Some(img) })
     }
 
-    async fn resize(&mut self, nwidth: u32) -> Result<Self> {
+    pub async fn resize(&mut self, nwidth: u32) -> Result<Self> {
         if let Some( img ) = &self.img {
             let img = img.clone();
             let resized_img = task::spawn_blocking(move || {
@@ -50,5 +52,9 @@ impl Image {
         } else {
             Err(eyre::eyre!("File does not exist!\nNothing to resize."))
         }
+    }
+
+    pub async fn save(&self) -> Result<()> {
+        todo!();
     }
 }
