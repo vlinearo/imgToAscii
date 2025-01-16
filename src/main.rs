@@ -24,16 +24,6 @@ const GRADIENT: &[u8] = b" .:!/r(l1Z4H9W8$@";
 struct Image;
 
 impl Image {
-    fn open(path: &Path) -> DynamicImage {
-        image::open(path).expect("Image doesn't exist!")
-    }
-
-    fn resize_img(image: DynamicImage, width: u32) -> DynamicImage {
-        let (w, h) = image.dimensions();
-        let height = (width as f32 * h as f32 / w as f32 * 0.55) as u32;
-        image.resize_exact(width, height, image::imageops::FilterType::Nearest)
-    }
-
     fn to_grayscale(image: DynamicImage) -> ImageBuffer<Luma<u8>, Vec<u8>> {
         image.into_luma8()
     }
